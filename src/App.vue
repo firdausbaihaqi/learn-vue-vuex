@@ -1,23 +1,14 @@
-<script setup></script>
+<script setup>
+import { toggleTheme } from './composables/theme.js'
+</script>
 
 <template>
-    <div>
-        <router-link :to="{ name: 'Home' }">Home</router-link> -
-        <router-link :to="{ name: 'About' }">About</router-link>
+    <div class="dark:bg-gray-800">
+        <div class="text-center">
+            <router-link :to="{ name: 'Home' }">Home</router-link> -
+            <router-link :to="{ name: 'About' }">About</router-link> -
+            <button @click="toggleTheme">toggle theme</button>
+        </div>
+        <router-view></router-view>
     </div>
-    <router-view></router-view>
 </template>
-
-<style>
-#app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-    margin-top: 60px;
-}
-router-link {
-    margin: 0 5px;
-}
-</style>

@@ -1,7 +1,7 @@
 <template>
-    <h1>Home</h1>
     <br />
     <div class="max-w-xl mx-auto">
+        <div class="mb-5 text-3xl font-bold text-center dark:text-gray-200">Todo App</div>
         <AddTodo />
         <Filter />
         <Todos />
