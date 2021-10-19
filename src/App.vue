@@ -1,14 +1,16 @@
-<script setup>
-import { toggleTheme } from './composables/theme.js'
-</script>
-
 <template>
     <div class="dark:bg-gray-800">
+        <div class="fixed top-5 right-10"><ThemeToggler /></div>
         <div class="text-center">
-            <router-link :to="{ name: 'Home' }">Home</router-link> -
-            <router-link :to="{ name: 'About' }">About</router-link> -
-            <button @click="toggleTheme">toggle theme</button>
+            <!-- <router-link :to="{ name: 'Home' }">Home</router-link> -
+            <router-link :to="{ name: 'About' }">About</router-link> - -->
         </div>
-        <router-view></router-view>
+        <div class="px-5 md:px-0">
+            <router-view></router-view>
+        </div>
     </div>
 </template>
+
+<script setup>
+import ThemeToggler from './components/ThemeToggler.vue'
+</script>

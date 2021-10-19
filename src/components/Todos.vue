@@ -1,5 +1,5 @@
 <template>
-    <div v-if="allTodos" class="grid grid-cols-3 gap-5 mt-5">
+    <div v-if="allTodos" class="grid grid-cols-2 gap-5 my-5 md:grid-cols-3">
         <div
             class="p-2 rounded-lg text-green-50"
             :class="todo.completed ? 'bg-green-800' : 'bg-green-400'"

@@ -1,9 +1,20 @@
 <template>
     <br />
-    <div class="max-w-xl mx-auto">
-        <div class="mb-5 text-3xl font-bold text-center dark:text-gray-200">Todo App</div>
+    <div class="max-w-xl mx-auto dark:text-gray-200">
+        <div class="mb-10 text-center">
+            <div class="mb-2 text-3xl font-bold">Yes, Todo App again</div>
+            <p>
+                but this time i'm using vuex (state management plugin) and also
+                that theme toggler and options dropdown is component from
+                headless ui
+            </p>
+        </div>
         <AddTodo />
         <Filter />
+        <p>
+            use double click on each item to mark it as done (response might be
+            slower depending on your connection)
+        </p>
         <Todos />
     </div>
 </template>
