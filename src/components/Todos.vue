@@ -1,11 +1,13 @@
 <template>
     <div v-if="allTodos" class="grid grid-cols-2 gap-5 my-5 md:grid-cols-3">
         <div
-            class="p-2 rounded-lg text-green-50"
-            :class="todo.completed ? 'bg-green-800' : 'bg-green-400'"
+            :class="[
+                todo.completed ? 'bg-green-800' : 'bg-green-400',
+                'p-2 rounded-lg text-green-50 cursor-pointer',
+            ]"
             v-for="todo in allTodos"
             :key="todo.id"
-            @dblclick="handleUpdate(todo)"
+            @dblclick="updateTodoAction(todo)"
         >
             <p>
                 {{ todo.title }}
@@ -13,7 +15,7 @@
 
             <button
                 @click="deleteTodoAction(todo.id)"
-                class="p-1 mt-2 duration-300 border border-transparent focus:border-white"
+                class="p-1 mt-2 duration-300 border border-transparent  focus:border-white"
             >
                 <svg
                     class="w-6 h-6"
@@ -35,25 +37,30 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { computed } from '@vue/reactivity'
+import { useStore } from 'vuex'
+import { onMounted } from '@vue/runtime-core'
 
 export default {
-    computed: {
-        ...mapGetters(['allTodos']),
-    },
-    methods: {
-        ...mapActions(['fetchTodos', 'deleteTodoAction', 'updateTodoAction']),
-        handleUpdate(todo) {
+    setup() {
+        const store = useStore()
+
+        const allTodos = computed(() => store.getters.allTodos)
+
+        const deleteTodoAction = (id) => store.dispatch('deleteTodoAction', id)
+        const updateTodoAction = (todo) => {
             const newTodo = {
                 id: todo.id,
                 title: todo.title,
                 completed: !todo.completed,
             }
-            this.updateTodoAction(newTodo)
-        },
-    },
-    mounted() {
-        this.fetchTodos()
+            store.dispatch('updateTodoAction', newTodo)
+        }
+
+        const fetchTodos = () => store.dispatch('fetchTodos')
+        onMounted(() => fetchTodos())
+
+        return { allTodos, deleteTodoAction, updateTodoAction }
     },
 }
 </script>

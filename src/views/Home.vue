@@ -11,10 +11,12 @@
         </div>
         <AddTodo />
         <Filter />
-        <p>
-            use double click on each item to mark it as done (response might be
-            slower depending on your connection)
-        </p>
+        <small>
+            <i>
+                *use double click on each item to mark it as done (response might
+                be slower depending on your connection)
+            </i>
+        </small>
         <Todos />
     </div>
 </template>
@@ -24,8 +26,6 @@ import AddTodo from '../components/Add.vue'
 import Todos from '../components/Todos.vue'
 import Filter from '../components/Filter.vue'
 
-// TODO : change to v3 form
-// TODO : Add dark mode
 export default {
     components: { AddTodo, Todos, Filter },
 }

@@ -1,15 +1,14 @@
 <template>
     <div class="flex">
         <input
-            ref="newTodo"
-            name="nameTodo"
+            v-model="newTodo"
             type="text"
             placeholder="new todo"
             class="w-full p-2 border"
         />
         <button
             class="flex-shrink-0 px-2 text-gray-100 bg-green-400 border"
-            @click="add"
+            @click="handleAdd"
         >
             <svg
                 class="w-6 h-6"
@@ -29,15 +28,11 @@
     </div>
 </template>
 
-<script>
-import { mapActions } from 'vuex'
+<script setup>
+import { ref } from '@vue/reactivity'
+import { useStore } from 'vuex'
 
-export default {
-    methods: {
-        ...mapActions(['addTodoAction']),
-        add() {
-            this.addTodoAction(this.$refs.newTodo.value)
-        },
-    },
-}
+const newTodo = ref('')
+const store = useStore()
+const handleAdd = () => store.dispatch('addTodoAction', newTodo.value)
 </script>
